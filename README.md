@@ -1,12 +1,13 @@
-### TypeScript "Classes" Presentation
+TypeScript "Classes" Presentation
+=================================
 This repo contains a browser-based presentation on Typescript Classese.
 
-Dependencies
-============
+### Dependencies
+
 - Node
 - NPM
 
-To view this presentation in your browser:
+### To view this presentation in your browser:
 - Clone the repository from Github
 - From root of local repo, type: "npm install"
 - type "grunt serve"
