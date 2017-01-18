@@ -1,10 +1,10 @@
-TypeScript "Classes" Presentation
+TypeScript "Interfaces and Classes" Presentation
 =================================
 This repo contains a browser-based presentation on Typescript Classes.
 
 ### Dependencies
 
-- Node
+- Node.js
 - NPM
 
 ### To view this presentation in your browser:
