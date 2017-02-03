@@ -1,20 +1,20 @@
-interface IEngine  {
-    color: string,
-    name: string,
-    job: string,
-    weightInTons: number
+interface EngineInterface  {
+    _color: string,
+    _name: string,
+    _job: string,
+    _weightInTons: number
 }
 
-class Engine implements IEngine {
-    // _color: string;
-    // _name: string;
-    // _job: string;
-    // _weightInTons: number;
+class Engine implements EngineInterface {
+    _color: string;
+    _name: string;
+    _job: string;
+    _weightInTons: number;
     constructor(public color: string, public name: string, public job: string, public weightInTons: number){
-        this.color = color,
-        this.name = name,
-        this.job = job,
-        this.weightInTons = weightInTons
+        this._color = color,
+        this._name = name,
+        this._job = job,
+        this._weightInTons = weightInTons
     }
 
 }
