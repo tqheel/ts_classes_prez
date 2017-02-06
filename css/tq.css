@@ -1,0 +1,10 @@
+.highlight {
+    /*background-color: yellowgreen;*/
+    color: yellowgreen;
+}
+
+.reveal section img.arrow {
+    background-color: #111;
+    border: none;
+    width: 20%;
+}

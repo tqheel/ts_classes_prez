@@ -19,7 +19,7 @@
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+		<link rel="stylesheet" href="css/tq.css">
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -52,21 +52,39 @@
 	                <h2>Interfaces</h2>
 	                <blockquote>
 	                    <p>
-	                        One of TypeScript’s core principles is that type-checking focuses on the shape that values have. This is sometimes called 
+	                        One of TypeScript’s core principles is that <span class="highlight">type-checking focuses on the shape that values have</span>. This is sometimes called 
 							“duck typing” or “structural subtyping”. In TypeScript, interfaces fill the role of naming these types, and are a powerful 
-							way of defining contracts within your code as well as contracts with code outside of your project.
-
+							<span class="highlight">way of defining contracts</span> within your code as well as contracts with code outside of your project.							
 	                    </p>
 	                    <footer>
 	                        <cite>
-	                            
+	                            <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">Typescripting.org</a>
 	                        </cite>
 	                    </footer>
 	                </blockquote>
 	            </section>
 	            <section>
-	                <h2>For Example:</h2>
-	                
+	                <h2>A Simple TS Interface Example:</h2>
+	                <pre><code class="javascript">
+interface LabelledValue {
+    label: string;
+}
+
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+					</code></pre>
+					<img class="arrow" src="images/arrow-down-icon-png-9.png" alt="">
+					<pre><code class="javascript">
+function printLabel(labelledObj) {
+    console.log(labelledObj.label);
+}
+var myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj);	
+						</code></pre>
 	            </section>
 	            <section>
 	                <h2>Another Example:</h2>
