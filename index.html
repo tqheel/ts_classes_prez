@@ -253,7 +253,7 @@ a = ro as number[]; //no error. Hooray!
             <section>
                 <h2>Excess Property Checks</h2>
                 <div>
-					What's wrong with this picture? (see demo/example4.ts):
+					What's wrong with this picture?:
 					<pre><code class="javascript">
 interface SquareConfig {
     color?: string;
@@ -266,23 +266,137 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 
 let mySquare = createSquare({ colour: "red", width: 100 });
 					</code></pre>
+					<p class="fragment">
+						The TypeScript compiler applies <em>excess property checking</em> to object literals 
+						when assigning them to other variables or passing them as arguments. In the last 
+						line above, we have "colour" instead of "color" in the first property of the argument. 
+						This typo generates an error at compile time (see demo/example4.ts).
+					</p>
 				</div>
             </section>
 	        <section>
 	            <h2>Function Types</h2>
-	            <ul>
-	                
-	            </ul>   
+	            <div>
+					Interfaces in TypeScript are also used to describe functions:
+				</div> 
+				<div class="fragment">
+					<pre><code class="javascript">
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src: string, sub: string): boolean {
+    let result = src.search(sub);
+    return result > -1;
+}
+						</code></pre>
+						<p>Note that function parameter names do not have to match in order for 
+							functions to correctly type-check.
+						</p>
+						<p>See demo/example5.ts</p>
+				</div>
 	        </section>
 	        <section>
-	            <h2>Indexable Types</h2>
+	            <section>
+					<h2>Indexable Types</h2>
+					<div>TypeScript also provides types that can be "indexed into" (demo/example6.ts):</div>
+					<pre class="fragment"><code class="javascript">
+interface StringArray {
+    [index: number]: string;
+}
 
+let myArray: StringArray;
+myArray = ["Bob", "Fred"];
+
+let myStr: string = myArray[0];
+						</code></pre>
+				</section>
+				<section>
+					<div>
+						Both numeric and string index "signatures" are supported. However, 
+						the type returned from a numeric indexer must be a subtype of the type returned 
+						from the string indexer. This is because when indexing with a number, JavaScript 
+						will actually convert that to a string before indexing into an object. That means
+						 that indexing with 100 (a number) is the same thing as indexing with "100" (a string),
+						  so the two need to be consistent:
+					</div>
+					<pre class="fragment"><code class="javascript">
+interface NumberDictionary {
+    [index: string]: number;
+    length: number;    // ok, length is a number
+    name: string;      // error, the type of 'name' is not a subtype of the indexer
+}
+						</code><p>see demo/example7.ts</p></pre>
+						
+
+				</section>		
+				<section>
+					<div>
+						Also, index signatures can be made readonly to keep their indices from 
+						being overwritten:
+						<pre><code class="javascript">
+interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+myArray[2] = "Mallory"; // error!
+							</code>See demo/example8.ts</pre>
+					</div>
+				</section>
 	        </section>
 	        
 	        <section>
-                <h2>Class Types</h2>
+				<section>
+				<h2>Extending Interfaces</h2>
+								<div>
+									As with other languages, interfaces can be used to extend other interfaces...
+								</div>
+								<pre class="fragment"><code class="javascript">
+interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = "blue";
+square.sideLength = 10;
+					</code></pre>
+				</section>
+				<section>
+					<div class="">...and of course, multiple interfaces can be combined 
+											by extending multiple interfaces at the same time:
+										</div>
+										<pre class="fragment"><code class="javascript">
+interface Shape {
+    color: string;
+}
+
+interface PenStroke {
+    penWidth: number;
+}
+
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = "blue";
+square.sideLength = 10;
+square.penWidth = 5.0;
+						</code>See demo/example9.ts</pre>
+				</section>
+                
+					
 	        </section>
 			<section>
+				<h2>That's all for now</h2>
+				<div>Next Up: Classes</div>
+			</section>
+			<!--<section>
                 <h2>Extending Interfaces</h2>
 	        </section>
 			<section>
@@ -290,7 +404,7 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 	        </section>
 			<section>
                 <h2>Interfaces Extending Classes</h2>
-	        </section>
+	        </section>-->
 	    </div>
     </div>
 			    
