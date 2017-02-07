@@ -47,6 +47,63 @@
 					<a href="https://github.com/tqheel/ts_classes_prez">https://github.com/tqheel/ts_classes_prez</a>
 				</p>
 	        </section>
+			<section>
+				<section>
+					<h2>First: Some Housekeeping</h2>
+				<ul>
+					<li>Using VS Code for code demos</li>
+					<li>Use "ctrl-shift-p" for command pallette
+						<ul>
+							<li>Type "settings" and hit enter to open user settings JSON file</li>
+							<li>From here you can change your default editor to Git Bash or PowerShell:
+								<pre><code class="javascript">
+// Place your settings in this file to overwrite the default settings
+{
+    // 64-bit PowerShell if available, otherwise 32-bit
+"terminal.integrated.shell.windows": "C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
+// Git Bash
+"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+}
+							</code></pre>
+							</li>
+
+						</ul>
+					</li>
+					<li>Use "ctrl-`" (backtick) to toggle visibility of default editor						
+					</li>					
+				</ul>
+				</section>
+				
+				<section>
+					<h2>First: Some Housekeeping</h2>
+					<ul>
+						<li>
+						Use "tsc" command to run TypeScript compiler and generate JS files
+						<pre><code class="dos">
+$ tsc awesome_ts_file
+							</code></pre>
+							or, if you have a tsconfig.json file, you can configure tsc to compile 
+							all files in particular file paths, generate sourcemap files, and 
+							gazillions of other things that Roger Spratley will be happy to elaborate on,
+							ad infinitum
+							<pre><code class="javascript">
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+    "include": [
+         "demo/**/*"
+    ]
+}
+								</code></pre>
+					</li>
+					</ul>
+				</section>
+			</section>
 	        <section>
 	            <section>
 	                <h2>Interfaces</h2>
@@ -63,7 +120,15 @@
 	                    </footer>
 	                </blockquote>
 	            </section>
-	            <section>
+	            
+	            <aside class="notes">
+	                Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+	            </aside>
+	        </section>
+
+				
+	        <section>
+	           <section>
 	                <h2>A Simple TS Interface Example:</h2>
 	                <pre><code class="javascript">
 interface LabelledValue {
@@ -85,19 +150,16 @@ function printLabel(labelledObj) {
 var myObj = { size: 10, label: "Size 10 Object" };
 printLabel(myObj);	
 						</code></pre>
+						
 	            </section>
 	            <section>
-	                <h2>Another Example:</h2>
+	               <p>
+						Note that we did not have explicitly "implement" the interface 
+						like we would have in C#. In TypeScript, only the "shape" of the 
+						object we pass to the function matters.
+					</p>
 	                
 	            </section>
-	            <aside class="notes">
-	                Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-	            </aside>
-	        </section>
-
-				
-	        <section>
-	            <h2>another page</h2>
 	           
 	        </section>
 	        <section>
