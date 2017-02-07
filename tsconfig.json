@@ -4,7 +4,9 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "watch": true,
+        "listFiles": true
     },
     "include": [
          "demo/**/*"

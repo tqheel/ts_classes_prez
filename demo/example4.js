@@ -1,4 +1,4 @@
-function createSquare(config) {
+function createSquare2(config) {
     var newSquare = { color: "white", area: 100 };
     if (config.color) {
         newSquare.color = config.color;
@@ -8,5 +8,5 @@ function createSquare(config) {
     }
     return newSquare;
 }
-var mySquare = createSquare({ color: "black" });
-//# sourceMappingURL=example2.js.map
+var mySquare2 = createSquare({ colour: "red", width: 100 });
+//# sourceMappingURL=example4.js.map

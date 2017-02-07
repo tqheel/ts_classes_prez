@@ -51,10 +51,10 @@
 				<section>
 					<h2>First: Some Housekeeping</h2>
 				<ul>
-					<li>Using VS Code for code demos</li>
-					<li>Use "ctrl-shift-p" for command pallette
+					<li>I will be using VS Code for code demos.</li>
+					<li>Use "ctrl-shift-p" for command pallette.
 						<ul>
-							<li>Type "settings" and hit enter to open user settings JSON file</li>
+							<li>Type "settings" and hit enter to open user settings JSON file.</li>
 							<li>From here you can change your default editor to Git Bash or PowerShell:
 								<pre><code class="javascript">
 // Place your settings in this file to overwrite the default settings
@@ -69,7 +69,7 @@
 
 						</ul>
 					</li>
-					<li>Use "ctrl-`" (backtick) to toggle visibility of default editor						
+					<li>Use "ctrl-`" (backtick) to toggle visibility of default editor		.				
 					</li>					
 				</ul>
 				</section>
@@ -78,14 +78,14 @@
 					<h2>First: Some Housekeeping</h2>
 					<ul>
 						<li>
-						Use "tsc" command to run TypeScript compiler and generate JS files
+						Use "tsc" command to run TypeScript compiler and generate JS files.
 						<pre><code class="dos">
 $ tsc awesome_ts_file
 							</code></pre>
 							or, if you have a tsconfig.json file, you can configure tsc to compile 
 							all files in particular file paths, generate sourcemap files, and 
-							gazillions of other things that Roger Spratley will be happy to elaborate on,
-							ad infinitum
+							<a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">gazillions</a> of other things that Roger Spratley will be happy to elaborate on,
+							ad infinitum.
 							<pre><code class="javascript">
 {
     "compilerOptions": {
@@ -108,14 +108,12 @@ $ tsc awesome_ts_file
 	            <section>
 	                <h2>Interfaces</h2>
 	                <blockquote>
-	                    <p>
 	                        One of TypeScript’s core principles is that <span class="highlight">type-checking focuses on the shape that values have</span>. This is sometimes called 
 							“duck typing” or “structural subtyping”. In TypeScript, interfaces fill the role of naming these types, and are a powerful 
 							<span class="highlight">way of defining contracts</span> within your code as well as contracts with code outside of your project.							
-	                    </p>
 	                    <footer>
 	                        <cite>
-	                            <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">Typescripting.org</a>
+	                            <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">TypeScriptLang.org</a>
 	                        </cite>
 	                    </footer>
 	                </blockquote>
@@ -129,7 +127,7 @@ $ tsc awesome_ts_file
 				
 	        <section>
 	           <section>
-	                <h2>A Simple TS Interface Example:</h2>
+	                <h2>A Simple TS Interface Example (demo/example1.ts):</h2>
 	                <pre><code class="javascript">
 interface LabelledValue {
     label: string;
@@ -150,91 +148,148 @@ function printLabel(labelledObj) {
 var myObj = { size: 10, label: "Size 10 Object" };
 printLabel(myObj);	
 						</code></pre>
-						
-	            </section>
-	            <section>
-	               <p>
+					<p>
 						Note that we did not have explicitly "implement" the interface 
 						like we would have in C#. In TypeScript, only the "shape" of the 
 						object we pass to the function matters.
 					</p>
-	                
 	            </section>
 	           
 	        </section>
 	        <section>
-	            <h2>more stuff</h2>
-				
+				<section>
+					<h2>Optional Properties</h2>
+				<blockquote>
+					Not all properties of an interface may be required. 
+					Some exist under certain conditions or may not be there at all. 
+					These optional properties are popular when creating patterns like “option bags” 
+					where you pass an object to a function that only has a couple of properties filled in.
+				</blockquote>
+				<footer>
+					<cite>
+	                	<a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">TypeScriptLang.org</a>
+					</cite>
+				</section>
+	            
+				</footer>
+				<section>
+					<h2>Example Using Optional Params (demo/example2.ts)</h2>
+					<pre><code class="javascript">
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+
+function createSquare(config: SquareConfig): {color: string; area: number} {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+
+let mySquare = createSquare({color: "black"});
+						</code></pre>
+				</section>
 	        </section>
 	        <section>
 	            <section>
-	                <h2>drill down</h2>
-	            </section>
-	            <section>
-	                <div class="fragment">
-	                    <h3>some code here:</h3>
-	                    <pre><code>
-$ git status
-                            </code></pre>
-	                </div>
-	                <div class="fragment">
-	                    <h3>explain</h3>
-	                    <pre><code>
-$ git add --all
-                            </code></pre>
-	                </div>
-	            </section>
-	            <section>
-	                <div class="fragment">
-	                    <h3>explain</h3>
-	                    <pre><code>
-$ git commit -m 'This commit adds happy little trees all over teh internets.'
-                        </code></pre>
-	                </div>
-
-	                <div class="fragment">
-	                    <h3>more esplaining</h3>
-	                    <pre><code>
-$ git pull origin master
-                        </code></pre>
-	                </div>
-	            </section>
-	            <section>
-	                <div class="fragment">
-	                    <h3>more code</h3>
-	                    <pre><code>
-$ git push origin master
-                        </code></pre>
-	                </div>
-	            </section>
-	        </section>
-            <section>
-                <h2>Demo 1</h2>
-                <ul>
-                    
-                </ul>
-                <pre><code>
-function reallyUsefulEngine(coal, water, fire) {
-    var steam = coal + water + fire;
-    return steam;
+	                <h2>Readonly Properties</h2>
+					<p>Sometimes you want to only allow properties to be modified when an 
+						object is first created. For that, TypeScript offers Readonly parameters:
+					</p>
+					<div class="fragment">
+						<pre><code class="javascript">
+interface Point {
+    readonly x: number;
+    readonly y: number;
 }
-                </code></pre>
+
+
+						</code></pre>
+					</div>
+					
+						<div class="fragment">If you try to change the value of x or y after the initial assignment, 
+							you get an error:
+						</div>
+						<div class="fragment">
+							<pre><code class="javascript">
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
+							</code></pre>
+							<footer>
+								Try it out in demo/example3.ts
+							</footer>
+						</div>
+						
+	            </section>
+				<section>
+					<h2>Readonly Arrays</h2>
+					<div class="fragment">
+						TypeScript comes with a ReadonlyArray<T> type that is the same as Array<T> 
+							with all mutating methods removed, so you can make sure you don’t change 
+							your arrays after creation:
+					</div>
+					<pre class="fragment"><code class="javascript">
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray&lt;number&gt; = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+						</code></pre>
+						<div class="fragment">
+							Note that on the last line above, you can't assign the ReadonlyArray back 
+							to to a normal array. However, you can override it with a type assertion:
+						</div>
+						<pre class="fragment"><code class="javascript">
+a = ro as number[]; //no error. Hooray!
+							</code></pre>
+				</section>
+			</section>
+            <section>
+                <h2>Excess Property Checks</h2>
+                <div>
+					What's wrong with this picture? (see demo/example4.ts):
+					<pre><code class="javascript">
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+
+function createSquare(config: SquareConfig): { color: string; area: number } {
+    // ...
+}
+
+let mySquare = createSquare({ colour: "red", width: 100 });
+					</code></pre>
+				</div>
             </section>
 	        <section>
-	            <h2>Demo 2</h2>
+	            <h2>Function Types</h2>
 	            <ul>
 	                
 	            </ul>   
 	        </section>
 	        <section>
-	            <h2>Demo 3</h2>
-	            <ul>
-	                
-	            </ul>
+	            <h2>Indexable Types</h2>
+
 	        </section>
 	        
 	        <section>
-                <p>THE END</p>
+                <h2>Class Types</h2>
+	        </section>
+			<section>
+                <h2>Extending Interfaces</h2>
+	        </section>
+			<section>
+                <h2>Hybrid Types</h2>
+	        </section>
+			<section>
+                <h2>Interfaces Extending Classes</h2>
 	        </section>
 	    </div>
     </div>
@@ -272,6 +327,5 @@ function reallyUsefulEngine(coal, water, fire) {
 			});
 
 		</script>
-		<script src="//localhost:35729/livereload.js"></script>
 	</body>
 </html>

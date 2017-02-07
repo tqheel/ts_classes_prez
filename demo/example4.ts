@@ -3,7 +3,7 @@ interface SquareConfig {
     width?: number;
 }
 
-function createSquare(config: SquareConfig): {color: string; area: number} {
+function createSquare2(config: SquareConfig): { color: string; area: number } {
     let newSquare = {color: "white", area: 100};
     if (config.color) {
         newSquare.color = config.color;
@@ -14,5 +14,4 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
     return newSquare;
 }
 
-let mySquare = createSquare({color: "black"});
-
+let mySquare2 = createSquare({ colour: "red", width: 100 });
