@@ -5,7 +5,7 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "watch": true,
+        "watch": false,
         "listFiles": true
     },
     "include": [

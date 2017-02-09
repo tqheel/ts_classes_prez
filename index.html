@@ -38,7 +38,7 @@
 	    <div class="slides">
 	        <section>
 	            <h1>Typescript: </h1>
-				<h2>Interfaces</h2>	            
+				<h2>Interfaces and Classes</h2>	            
 	            <h5 style="color: limegreen; font-family: monospace">(Subtitle: PowerPoint is for N00bs!)</h5>
 	            <p>
 	                <small>Created by <a href="http://qualls.me">Todd E. Qualls</a> / <a href="http://twitter.com/teqknowledgy">@teqknowledgy</a></small>
@@ -347,14 +347,50 @@ myArray[2] = "Mallory"; // error!
 					</div>
 				</section>
 	        </section>
-	        
+	        <section>
+				<section>
+					<h2>Classes</h2>
+					<h3>Implementing an Interface</h3>
+					<p>As with other languages, the most common usage of interfaces is enforcing a contract:</p>
+					<pre class="fragment"><code class="javascript">
+interface ClockInterface {
+	currentTime: Date;
+}
+
+class Clock implements ClockInterface {
+	currentTime: Date;
+	constructor(h: number, m: number) {}
+}
+					</code></pre>					
+				</section>
+				<section>
+					<p>
+						Interfaces can also be used to describe methods that must be implemented 
+						by any class inheriting from the interface:
+					</p>
+					<pre class="fragment"><code class="javascript">
+interface ClockInterface {
+	currentTime: Date;
+	setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+	currentTime: Date;
+	setTime(d: Date) {
+		this.currentTime = d;
+	}
+	constructor(h: number, m: number) {}
+}
+						</code></pre>
+				</section>
+			</section>
 	        <section>
 				<section>
 				<h2>Extending Interfaces</h2>
-								<div>
-									As with other languages, interfaces can be used to extend other interfaces...
-								</div>
-								<pre class="fragment"><code class="javascript">
+					<div>
+						As with other languages, interfaces can be used to extend other interfaces...
+					</div>
+					<pre class="fragment"><code class="javascript">
 interface Shape {
     color: string;
 }
@@ -367,6 +403,13 @@ let square = &lt;Square&gt;{};
 square.color = "blue";
 square.sideLength = 10;
 					</code></pre>
+				</section>
+				<section>
+					<h3>Difference between the static and instance sides of classes</h3>
+					<p>
+						Classes (covered on their on later) both a static side and an 
+						instance side.
+					</p>
 				</section>
 				<section>
 					<div class="">...and of course, multiple interfaces can be combined 
@@ -394,11 +437,8 @@ square.penWidth = 5.0;
                 
 					
 	        </section>
+			
 			<section>
-				<h2>That's all for now</h2>
-				<div>Next Up: Classes</div>
-			</section>
-			<!--<section>
                 <h2>Extending Interfaces</h2>
 	        </section>
 			<section>
@@ -406,7 +446,7 @@ square.penWidth = 5.0;
 	        </section>
 			<section>
                 <h2>Interfaces Extending Classes</h2>
-	        </section>-->
+	        </section>
 	    </div>
     </div>
 			    
