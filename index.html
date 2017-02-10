@@ -142,7 +142,7 @@ function printLabel(labelledObj: LabelledValue) {
 let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 					</code></pre>
-					<img class="arrow" src="images/arrow-down-icon-png-9.png" alt="">
+					<p>Which transpiles to JavaScript as:</p>
 					<pre><code class="javascript">
 function printLabel(labelledObj) {
     console.log(labelledObj.label);
@@ -151,7 +151,7 @@ var myObj = { size: 10, label: "Size 10 Object" };
 printLabel(myObj);	
 						</code></pre>
 					<p>
-						Note that we did not have explicitly "implement" the interface 
+						Note that we did not have to explicitly "implement" the interface 
 						like we would have in C#. In TypeScript, only the "shape" of the 
 						object we pass to the function matters.
 					</p>
@@ -354,12 +354,12 @@ myArray[2] = "Mallory"; // error!
 					<p>As with other languages, the most common usage of interfaces is enforcing a contract:</p>
 					<pre class="fragment"><code class="javascript">
 interface ClockInterface {
-	currentTime: Date;
+    currentTime: Date;
 }
 
 class Clock implements ClockInterface {
-	currentTime: Date;
-	constructor(h: number, m: number) {}
+    currentTime: Date;
+    constructor(h: number, m: number) { }
 }
 					</code></pre>					
 				</section>
@@ -368,7 +368,8 @@ class Clock implements ClockInterface {
 						Interfaces can also be used to describe methods that must be implemented 
 						by any class inheriting from the interface:
 					</p>
-					<pre class="fragment"><code class="javascript">
+					<p>(demo/example10.ts)</p>
+					<pre><code class="javascript">
 interface ClockInterface {
 	currentTime: Date;
 	setTime(d: Date);
@@ -381,7 +382,29 @@ class Clock implements ClockInterface {
 	}
 	constructor(h: number, m: number) {}
 }
+						</code>
+						
+						</pre>
+						
+				</section>
+				<section>
+					<h3>Difference between the static and instance sides of classes</h3>
+					<p>
+						Classes have both a static side and an 
+						instance side.
+					</p>
+					<p>(demo/example11.ts)</p>
+					<pre class="fragment"><code class="javascript">
+interface ClockConstructor {
+    new (hour: number, minute: number);
+}
+
+class Clock implements ClockConstructor {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
 						</code></pre>
+
 				</section>
 			</section>
 	        <section>
@@ -404,13 +427,7 @@ square.color = "blue";
 square.sideLength = 10;
 					</code></pre>
 				</section>
-				<section>
-					<h3>Difference between the static and instance sides of classes</h3>
-					<p>
-						Classes (covered on their on later) both a static side and an 
-						instance side.
-					</p>
-				</section>
+				
 				<section>
 					<div class="">...and of course, multiple interfaces can be combined 
 											by extending multiple interfaces at the same time:
