@@ -322,6 +322,13 @@ let myStr: string = myArray[0];
 						will actually convert that to a string before indexing into an object. That means
 						 that indexing with 100 (a number) is the same thing as indexing with "100" (a string),
 						  so the two need to be consistent:
+						  <footer>
+							  <cite>
+								  <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">
+								  	TypeScriptLang.org
+								  </a>
+							  </cite>
+						  </footer>
 					</div>
 					<pre class="fragment"><code class="javascript">
 interface NumberDictionary {
@@ -409,8 +416,8 @@ class Clock implements ClockConstructor {
 					<p class="fragment">
 						Only the "instance" side of a class is checked for type. 
 						The class constructor sits on the static side of the class, 
-						so it is not included in the check against the implemented interface and 
-						therfore a required part of the implementation appears to be missing.
+						so it is not included in the check against the implemented interface.  
+						In this case a required part of the implementation appears to be missing.
 					</p>
 				</section>
 				<section>
@@ -625,10 +632,13 @@ let greeter = new Greeter("world");
 			</section>
 			<section>
 				<section>
-					<h2>Inheritance</h2>
-					Let's expand on our earlier discussion of the concept of inheritance 
-					with TypeScript with another example (demo/example16.ts):
-					<pre><code class="javascript">
+					<div>
+						<h2>Inheritance</h2>
+						Let's expand on our earlier discussion of the concept of inheritance 
+						with TypeScript with another example (demo/example16.ts):
+					</div>
+					
+					<pre class="fragment"><code class="javascript">
 class Animal {
     name: string;
     constructor(theName: string) { this.name = theName; }
@@ -646,9 +656,9 @@ class Snake extends Animal {
 }
 						</code>
 						</pre>
-					<p>
+					<p class="fragment">
 						Note:
-						<ul>
+						<ul class="fragment">
 							<li>usage of "extends" keyword to create a subclass</li>
 							<li>a derived subclass must call "super()", in order to execute the 
 								constructor on the base class
@@ -657,6 +667,9 @@ class Snake extends Animal {
 						</ul>
 					</p>
 				</section>
+			</section>
+			<section>
+				<h2>That's all for now...</h2>
 			</section>
 	    </div>
     </div>
