@@ -588,6 +588,76 @@ interface SelectableControl extends Control {
 					</cite>
 				</footer>
 			</section>
+			<section>
+				<h2>
+					A simple example of a Class:
+				</h2>
+				<pre><code class="javascript">
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+let greeter = new Greeter("world");
+					</code></pre>
+				<p>
+					This should be familiar ground to a C# programmer, since it has:
+					<ul>
+						<li>a constructor</li>
+						<li>a property</li>
+						<li>a method</li>
+					</ul>
+					<br><br>
+					<p>Other familiar aspects:</p>
+					<ul>
+						<li>prepending references to class members with "this"</li>
+						<li>usage of "new" to call the constructor for the class</li>
+						<li>the call to the constructor initializes a new class instance
+							and sets member values
+						</li>
+					</ul>
+				</p>
+			</section>
+			<section>
+				<section>
+					<h2>Inheritance</h2>
+					Let's expand on our earlier discussion of the concept of inheritance 
+					with TypeScript with another example (demo/example16.ts):
+					<pre><code class="javascript">
+class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+						</code>
+						</pre>
+					<p>
+						Note:
+						<ul>
+							<li>usage of "extends" keyword to create a subclass</li>
+							<li>a derived subclass must call "super()", in order to execute the 
+								constructor on the base class
+								 </li>
+							<li>the usage of a method "override" for the base class' "move" method</li>
+						</ul>
+					</p>
+				</section>
+			</section>
 	    </div>
     </div>
 			    
