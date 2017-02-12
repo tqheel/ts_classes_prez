@@ -1,5 +1,6 @@
-var Clock = (function () {
-    function Clock(h, m) {
+var Clock2 = (function () {
+    function Clock2(h, m) {
     }
-    return Clock;
+    return Clock2;
 }());
+//# sourceMappingURL=example11.js.map

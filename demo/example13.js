@@ -2,4 +2,5 @@ var square = {};
 square.color = "blue";
 square.sideLength = 10;
 square.penWidth = 5.0;
-//# sourceMappingURL=example9.js.map
+console.log(square);
+//# sourceMappingURL=example13.js.map

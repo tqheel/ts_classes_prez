@@ -385,13 +385,15 @@ class Clock implements ClockInterface {
 						</code>
 						
 						</pre>
-						
+						<p>Note that since no return type is specified, setTime has return type of "any".</p>
 				</section>
 				<section>
 					<h3>Difference between the static and instance sides of classes</h3>
 					<p>
-						Classes have both a static side and an 
-						instance side.
+						A class has two types: the type of the static side and the type of the 
+						instance side. If you create an interface 
+						with a construct signature and then attempt to implement that interface 
+						for a class, the TypeScript compiler will genertate an error.
 					</p>
 					<p>(demo/example11.ts)</p>
 					<pre class="fragment"><code class="javascript">
@@ -404,7 +406,44 @@ class Clock implements ClockConstructor {
     constructor(h: number, m: number) { }
 }
 						</code></pre>
+					<p class="fragment">
+						Only the "instance" side of a class is checked for type. 
+						The class constructor sits on the static side of the class, 
+						so it is not included in the check against the implemented interface and 
+						therfore a required part of the implementation appears to be missing.
+					</p>
+				</section>
+				<section>
+					<p>
+						To avoid this implementation issue, you work directly with the static side 
+						of the class (demo/example12.ts):
+					</p>
+					<pre><code class="javascript">
+interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {
+    tick();
+}
 
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("beep beep");
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("tick tock");
+    }
+}
+						</code></pre>
+						<pre><code class="javascript">
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface2 {
+    return new ctor(hour, minute);
+}
+							</code></pre>
 				</section>
 			</section>
 	        <section>
@@ -413,7 +452,7 @@ class Clock implements ClockConstructor {
 					<div>
 						As with other languages, interfaces can be used to extend other interfaces...
 					</div>
-					<pre class="fragment"><code class="javascript">
+					<pre class=""><code class="javascript">
 interface Shape {
     color: string;
 }
@@ -432,7 +471,7 @@ square.sideLength = 10;
 					<div class="">...and of course, multiple interfaces can be combined 
 											by extending multiple interfaces at the same time:
 										</div>
-										<pre class="fragment"><code class="javascript">
+										<pre class=""><code class="javascript">
 interface Shape {
     color: string;
 }
@@ -449,21 +488,106 @@ let square = &lt;Square&gt;{};
 square.color = "blue";
 square.sideLength = 10;
 square.penWidth = 5.0;
-						</code>See demo/example9.ts</pre>
+						</code>See demo/example13.ts</pre>
 				</section>
                 
 					
-	        </section>
-			
+	        </section>			
 			<section>
-                <h2>Extending Interfaces</h2>
+                <section>
+					<h2>Hybrid Types</h2>
+				<p>
+					JavaScript is a dynamically-typed language, which makes it very flexible. 
+					We can take advantage of this flexibility on the TypeScript side by combining some 
+					of the types from our earlier discussions:
+				</p>
+				</section>
+				<section>
+					In the following example we have something that serves as  both 
+					an object and a function at the same time (demo/example14.ts):
+					<pre><code class="javascript">
+interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = &lt;Counter&gt;function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+						</code></pre>
+				</section>
 	        </section>
 			<section>
-                <h2>Hybrid Types</h2>
+				<section>
+					<h2>Interfaces Extending Classes</h2>
+					<p>
+						When an interface type extends a class type it 
+						<span class="highlight">inherits the members of the class 
+						but not their implementations</span>
+						. It is as if the interface had declared all of the 
+						members of the class without providing an implementation. Interfaces inherit even 
+						the private and protected members of a base class. This means that 
+						<span class="highlight">
+							when you create 
+						an interface that extends a class with private or protected members, that interface
+						 type can only be implemented by that class or a subclass of it
+						</span>.
+
+					</p>
+					
+					<footer><cite>
+						<a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">TypeScriptLang.org</a>
+						</cite></footer>
+				</section>
+                <section>
+					<p>
+						If we have a complex chain of inheritance, 
+						and want to ensure that our code only works with subtypes that have certain 
+						properties, we might employ code like the following (demo/example15.ts):
+					</p>
+					<pre class="fragment"><code class="javascript">
+class Control {
+    private state: any;
+}
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+						</code></pre>
+				</section>
 	        </section>
 			<section>
-                <h2>Interfaces Extending Classes</h2>
-	        </section>
+				<h2>
+					Classes
+				</h2>
+				<p>
+					<span class="highlight">
+						Traditional JavaScript uses functions and prototype-based inheritance to build up 
+					reusable components
+					</span>, but this may feel a bit awkward to programmers more comfortable 
+					with an object-oriented approach, where classes inherit functionality and objects are 
+					built from these classes. Starting with ECMAScript 2015, also known as 
+					ECMAScript 6, 
+						JavaScript programmers will be able to build their applications using 
+						this object-oriented class-based approach.
+					<span class="highlight">
+						
+						In TypeScript, we allow developers to use these techniques now, 
+					 	and compile them down to JavaScript that works across all major browsers and platforms, 
+					 	without having to wait for the next version of JavaScript</span>.
+				</p>
+				<footer>
+					<cite>
+						<a href="https://www.typescriptlang.org/docs/handbook/classes.html">
+							TypeScriptLang.org
+						</a>
+					</cite>
+				</footer>
+			</section>
 	    </div>
     </div>
 			    
