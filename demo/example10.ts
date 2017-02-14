@@ -10,3 +10,11 @@ class Clock implements ClockInterface {
     }
     constructor(h: number, m: number) { }
 }
+
+class BadClock implements ClockInterface {
+    currentTime: Date;
+    // setTime(d: Date) {
+    //     this.currentTime = d;
+    // }
+    constructor(h: number, m: number) { }
+}

@@ -447,7 +447,7 @@ class AnalogClock implements ClockInterface {
 }
 						</code></pre>
 						<pre><code class="javascript">
-function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface2 {
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
     return new ctor(hour, minute);
 }
 							</code></pre>
@@ -510,8 +510,8 @@ square.penWidth = 5.0;
 				</p>
 				</section>
 				<section>
-					In the following example we have something that serves as  both 
-					an object and a function at the same time (demo/example14.ts):
+					In the following example we have something that serves as both 
+					an object with specific properties, and as a function at the same time (demo/example14.ts):
 					<pre><code class="javascript">
 interface Counter {
     (start: number): string;
