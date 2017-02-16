@@ -13,5 +13,18 @@ interface NumberDictionary2 {
 interface NumberDictionary3 {
     [index: number]: number;
     length: number;    // ok, length is a number, which matches the type returned by the numeric indexer
-    name: string;      // ok, name is a string, the numeric indexer returns a number, and string is a subtype of number
+    name: string;      // ok, name is a string, the numeric indexer returns a number, and a nunmber can be converted to a string
 }
+
+let dict: NumberDictionary1;
+dict['name'] = 'stuff';
+dict.name = 'sdfd';
+
+let obj: NumberDictionary3 = {
+    name: 'something',
+    length: 4
+};
+
+obj.name = (5).toString();
+
+
