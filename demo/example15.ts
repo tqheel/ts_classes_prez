@@ -11,7 +11,7 @@
     // both Control and SelectableControl
     //=============
 
-    class Button extends Control {
+    class Button extends Control implements SelectableControl {
         select() { }
     }
 

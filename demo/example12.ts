@@ -1,30 +1,39 @@
-interface ClockConstructor2 {
-    new (hour: number, minute: number): ClockInterface2;
-}
-interface ClockInterface2 {
-    tick(): any;
-}
+(function(){
 
-class DigitalClock implements ClockInterface2 {
-    constructor(h: number, m: number) { }
-    tick() {
-        console.log("beep beep");
+
+    interface ClockConstructor {
+            new (hour: number, minute: number): ClockInterface;
     }
-}
-class AnalogClock implements ClockInterface2 {
-    constructor(h: number, m: number) { }
-    tick() {
-        console.log("tick tock");
+    interface ClockInterface {
+        tick(): any;
     }
-}
 
-function createClock(ctor: ClockConstructor2, hour: number, minute: number): ClockInterface2 {
-    return new ctor(hour, minute);
-}
+    class DigitalClock implements ClockInterface {
+        constructor(h: number, m: number) { }
+        tick() {
+            console.log("beep beep");
+        }
+    }
+    class AnalogClock implements ClockInterface {
+        constructor(h: number, m: number) { }
+        tick() {
+            console.log("tick tock");
+        }
+    }
 
-let digitalClock = createClock(DigitalClock, 12, 17);
-let analogClock = createClock(AnalogClock, 7, 32);
+    function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+        return new ctor(hour, minute);
+    }
 
-digitalClock.tick();
+    let digitalClock = createClock(DigitalClock, 12, 17);
+    let analogClock = createClock(AnalogClock, 7, 32);
 
-analogClock.tick();
+    digitalClock.tick();
+
+    analogClock.tick();
+
+
+})();
+
+
+    
