@@ -19,7 +19,7 @@
     }
 
     let howard = new Employee("Howard", "Sales");
-    console.log(howard.getElevatorPitch());
-    console.log(howard.name); // error
-    
+    console.log(howard.getElevatorPitch()); //we can use this method because marked public
+    console.log(howard.name); // error: property "name" is not accessible here b/c the reference is outside Person and its subclasses
+
 })();

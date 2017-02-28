@@ -760,9 +760,48 @@ class Employee extends Person {
 			</section>
 			<section>
 				<h2>Readonly Modifier</h2>
+				<div>(demo/example19.ts)</div>
+				<pre class="fragment"><code class="javascript">
+class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus("Man with the 8 strong legs");
+dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+					</code></pre>
+					<pre class="fragment"><code class="javascript">
+class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
+    }
+}
+						</code></pre>
 			</section>
 			<section>
-				<h2>Accessors</h2>
+				<section>
+					<h2>Accessors</h2>
+					<div>We can use "getters" and "setters" to give us tighter control over
+						how object members are accessed
+					</div>
+					<pre><code class="javascript">
+class Employee {
+    fullName: string;
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
+						</code></pre>
+				</section>
+				<section>
+
+				</section>
+				
 			</section>
 			<section>
 				<h2>Static Properties</h2>
