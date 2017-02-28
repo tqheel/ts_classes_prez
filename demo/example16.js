@@ -39,5 +39,5 @@ var Horse = (function (_super) {
 }(Animal));
 var sam = new Snake("Sammy the Python");
 var tom = new Horse("Tommy the Palomino");
-sam.move();
-tom.move(34);
+sam.move(); //will have the default value for distanceInMeters prop
+tom.move(); //will override the default value for the Animal Class distanceInMeters prop
