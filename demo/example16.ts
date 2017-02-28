@@ -25,5 +25,5 @@ class Horse extends Animal {
 let sam = new Snake("Sammy the Python");
 let tom: Animal = new Horse("Tommy the Palomino");
 
-sam.move();
-tom.move(34);
+sam.move(); //will have the default value for distanceInMeters prop
+tom.move(34); //will override the default value for the Animal Class distanceInMeters prop

@@ -672,7 +672,7 @@ class Snake extends Animal {
 				<section>
 					<h2>Public, Private, and Protected Modifiers</h2>
 					<p class="fragment">
-						In C#, class members are "private" by default...
+						In C#, class members are "internal" by default...
 					</p>
 					<p class="fragment">
 						...but in TypeScript, members of a class are "public" by default:
@@ -685,7 +685,8 @@ class Animal {
         console.log(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
-						</code></pre>
+						</code>						
+						</pre>
 						<p class="fragment">
 							The class members above could have been written without the "public" modifier. 
 							They would still be accessible from outside the class.
@@ -725,8 +726,46 @@ class Employee {
     private name: string;
     constructor(theName: string) { this.name = theName; }
 }
+						</code>
+						<p>Are Rhino and Employee compatible types? (demo/example17.ts)</p>
+						</pre>
+				</section>
+				<section>
+					<h3>Protected Modifier</h3>
+					<p>Much like <strong>private</strong>, <strong>protected</strong> limits the accessibility of class members.
+						However, members marked as <strong>protected</strong> <i>are</i> visible to derived classes.
+						<br>(demo/example18.ts)
+					</p>
+					<pre class="fragment"><code class="javascript">
+class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
 						</code></pre>
 				</section>
+				
+			</section>
+			<section>
+				<h2>Readonly Modifier</h2>
+			</section>
+			<section>
+				<h2>Accessors</h2>
+			</section>
+			<section>
+				<h2>Static Properties</h2>
 			</section>
 	    </div>
     </div>
