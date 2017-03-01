@@ -33,8 +33,8 @@
     }());
     var grid3 = new Grid(1.0); // 1x scale
     var grid4 = new Grid(5.0); // 5x scale
-    console.log('grid3 distance:' + grid3.calculateDistanceFromOrigin({ x: 10, y: 10 }));
-    console.log('grid4 distance' + grid4.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+    console.log('grid3 distance: ' + grid3.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+    console.log('grid4 distance: ' + grid4.calculateDistanceFromOrigin({ x: 10, y: 10 }));
     var instance_origin = grid3.origin;
     console.log('instance_origin from grid3 (public origin): ' + instance_origin.x + ', ' + instance_origin.y);
 })();
