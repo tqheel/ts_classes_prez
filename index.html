@@ -785,9 +785,10 @@ class Octopus {
 				<section>
 					<h2>Accessors</h2>
 					<div>We can use "getters" and "setters" to give us tighter control over
-						how object members are accessed
+						how object members are accessed.
+						<p>First, let's look at an example without without getters and setters:</p>
 					</div>
-					<pre><code class="javascript">
+					<pre class="fragment"><code class="javascript">
 class Employee {
     fullName: string;
 }
@@ -800,12 +801,57 @@ if (employee.fullName) {
 						</code></pre>
 				</section>
 				<section>
+					<h3>Rewrite to Use Accessors:</h3>
+					<p>Imagine that we want to require a passcode before an instance of Employee can be 
+						modified:
+					</p>
+					(demo/example20.ts)
+					<pre class=""><code class="javascript">
+class Employee {
+    private _fullName: string;
 
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode && passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+						</code>
+Note: Accessors are only available when tsc is set to target ES5 or greater.
+						</pre>
 				</section>
 				
 			</section>
 			<section>
 				<h2>Static Properties</h2>
+				<p>We can also create "static" properties that are available 
+					to the class itself, but not available to instances of the class:
+				</p>
+				(demo/example21.ts)
+				<pre><code class="javascript">
+class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+					</code></pre>
 			</section>
 	    </div>
     </div>
