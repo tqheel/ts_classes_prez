@@ -4,7 +4,7 @@ let passcode = 'secret passcode';
 
 class Employee {
     private _fullName: string;
-
+    //***note: we must compile to JS using --target 'es5' switch to use accessors */
     get fullName(): string {
         return this._fullName;
     }
@@ -19,7 +19,6 @@ class Employee {
         }
     }
 }
-
 let employee = new Employee();
 employee.fullName = "Bob Smith";
 

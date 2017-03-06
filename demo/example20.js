@@ -4,6 +4,7 @@ var Employee = (function () {
     function Employee() {
     }
     Object.defineProperty(Employee.prototype, "fullName", {
+        //***note: we must compile to JS using --target 'es5' switch to use accessors */
         get: function () {
             return this._fullName;
         },
